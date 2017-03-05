@@ -7,7 +7,7 @@ class Conexion
 	{
 		$server = "127.0.0.1";
 		$user = "root";
-		$pass = "";
+		$pass = "root";
 		$database = "bibliotecabd";
 
 		$cadcon = new mysqli($server, $user, $pass);
