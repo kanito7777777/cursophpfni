@@ -3,14 +3,19 @@ session_start();
 
 class UsuarioController extends Usuario
 {
-	public function Insertar() 
+	private function MyQuery($sql)
 	{
-		$sql = "INSERT INTO `usuario` VALUES ('$this->Cuenta', sha1('$this->Password'), '$this->Nombre', '$this->Celular')";
-
 		$con = Conexion::Conectar();
 		$res = $con->query($sql);
 		Conexion::Desconectar($con);
 		return $res;
+	}
+
+	public function Insertar() 
+	{
+		$sql = "INSERT INTO `usuario` VALUES ('$this->Cuenta', sha1('$this->Password'), '$this->Nombre', '$this->Celular')";
+
+		return $this->MyQuery($sql);
 	}
 
 	public function Modificar($id)
@@ -18,44 +23,49 @@ class UsuarioController extends Usuario
 		$sql = "UPDATE usuario SET `Password` = sha1('$this->Password'), 
 		Nombre = '$this->Nombre', Celular = '$this->Celular' where Cuenta = '$id'";
 
-		$con = Conexion::Conectar();
-		$res = $con->query($sql);
-		Conexion::Desconectar($con);
-		return $res;
+		return $this->MyQuery($sql);
 	}
 
 	public function Eliminar($id)
 	{
 		$sql = "DELETE FROM usuario WHERE Cuenta = '$id'";
 
-		$con = Conexion::Conectar();
-		$res = $con->query($sql);
-		Conexion::Desconectar($con);
-		return $res;
+		return $this->MyQuery($sql);
 	}
 
 	public function Listar()
 	{
 		$sql = "SELECT * FROM usuario";
 		
-		$con = Conexion::Conectar();
-		$res = $con->query($sql);
-		Conexion::Desconectar($con);
-		return $res;
+		return $this->MyQuery($sql);
 	}
 
 	public function BuscarPorPK($id)
 	{
 		$sql = "SELECT * FROM usuario WHERE Cuenta = '$id'";
 
+		return $this->MyQuery($sql);
+	}
+
+	private function Filtrar($dato)
+	{
+		//limpiando espacios
+		$dato = trim($dato);
+
+		//filtrando entradas
 		$con = Conexion::Conectar();
-		$res = $con->query($sql);
+		$dato = $con->real_escape_string($dato);
 		Conexion::Desconectar($con);
-		return $res;
+
+		return $dato;
 	}
 
 	public function Autenticar($user, $pass)
 	{
+
+		$user = $this->Filtrar($user);
+		$pas = $this->Filtrar($pass);	
+
 		$sql = "select * from usuario where Cuenta = '$user' and Password = sha1('$pass')";
 
 		$con = Conexion::Conectar();

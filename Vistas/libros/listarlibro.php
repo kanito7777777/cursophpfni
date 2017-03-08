@@ -23,6 +23,40 @@
         {
             window.open(url,"Reportes", "width=900, height=450, left=200, top=150");
         }
+
+        function buscar()
+        {
+                var tableReg = document.getElementById('grilla');
+                var searchText = document.getElementById('txtBuscar').value.toLowerCase();
+                var cellsOfRow="";
+                var found=false;
+                var compareWith="";
+
+                // Recorremos todas las filas con contenido de la tabla
+                for (var i = 1; i < tableReg.rows.length; i++)
+                {
+                        cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
+                        found = false;
+                        // Recorremos todas las celdas
+                        for (var j = 0; j < cellsOfRow.length && !found; j++)
+                        {
+                                compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+                                // Buscamos el texto en el contenido de la celda
+                                if (searchText.length == 0 || (compareWith.indexOf(searchText) > -1))
+                                {
+                                        found = true;
+                                }
+                        }
+                        if(found)
+                        {
+                                tableReg.rows[i].style.display = '';
+                        } else {
+                                // si no ha encontrado ninguna coincidencia, esconde la
+                                // fila de la tabla
+                                tableReg.rows[i].style.display = 'none';
+                        }
+                }
+        }
     </script>
 
 </head>
@@ -50,8 +84,13 @@
             <a href="javascript:abrirVentana('../reportes/reportelistado.php')" >Lista de Aportes</a> ||            
             <a href="javascript:abrirVentana('../reportes/reporteestadistico.php')" >Reporte Estadistico</a>
         </p>
+
+        <p>
+            Buscar: <input onkeyup="javascript:buscar()" type="textBuscar" id="txtBuscar" name="txt" style="width:100%" value="">
+        </p>
+
 		<!-- tabla -->
-		<table  class="table table-bordered table-responsive table-striped" id="tListaLibros">
+		<table  class="table table-bordered table-responsive table-striped" id="grilla">
             <thead>
                 <th>Codigo</th>
                 <th>Titulo</th>
