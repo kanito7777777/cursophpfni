@@ -1,29 +1,26 @@
 <?php
+session_start();
 
 class UsuarioController extends Usuario
 {
-	public function Insertar()
+	public function Insertar() 
 	{
-		$sql = "INSERT INTO `usuario` 
-				VALUES ('$this->Cuenta', '$this->Password', '$this->Nombre', '$this->Celular')";
+		$sql = "INSERT INTO `usuario` VALUES ('$this->Cuenta', sha1('$this->Password'), '$this->Nombre', '$this->Celular')";
 
 		$con = Conexion::Conectar();
 		$res = $con->query($sql);
 		Conexion::Desconectar($con);
-
 		return $res;
 	}
 
 	public function Modificar($id)
 	{
-		$sql = "UPDATE `usuario` 
-				SET `Password`='$this->Password', `Nombre`='$this->Nombre', `Celular`='$this->Celular' 
-				WHERE (`Cuenta`='$id')";
+		$sql = "UPDATE usuario SET `Password` = sha1('$this->Password'), 
+		Nombre = '$this->Nombre', Celular = '$this->Celular' where Cuenta = '$id'";
 
 		$con = Conexion::Conectar();
 		$res = $con->query($sql);
 		Conexion::Desconectar($con);
-
 		return $res;
 	}
 
@@ -34,44 +31,48 @@ class UsuarioController extends Usuario
 		$con = Conexion::Conectar();
 		$res = $con->query($sql);
 		Conexion::Desconectar($con);
-
 		return $res;
 	}
 
 	public function Listar()
 	{
 		$sql = "SELECT * FROM usuario";
-
+		
 		$con = Conexion::Conectar();
 		$res = $con->query($sql);
 		Conexion::Desconectar($con);
-
 		return $res;
 	}
 
-	public function BuscarPor($id)
+	public function BuscarPorPK($id)
 	{
 		$sql = "SELECT * FROM usuario WHERE Cuenta = '$id'";
 
 		$con = Conexion::Conectar();
 		$res = $con->query($sql);
 		Conexion::Desconectar($con);
-
 		return $res;
 	}
 
 	public function Autenticar($user, $pass)
 	{
-		$sql = "select * from usuario where Cuenta = '$user' and Password = '$pass'";
+		$sql = "select * from usuario where Cuenta = '$user' and Password = sha1('$pass')";
 
 		$con = Conexion::Conectar();
 		$res = $con->query($sql);
 		Conexion::Desconectar($con);
 
 		if(mysqli_num_rows($res))
-			echo "ok";
+		{
+			//capturando al usuario en una variable de session
+			$_SESSION['user'] = $res->fetch_object();
+
+			return "ok";
+		}	
 		else
-			echo "error";
+		{
+			return "error";
+		}
 	}
 }
 

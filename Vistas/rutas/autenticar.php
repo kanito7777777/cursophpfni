@@ -6,4 +6,12 @@ $user = $_POST['txtCuenta'];  //'admin';
 $pass = $_POST['txtPassword']; //'12345';
 
 $obj = new UsuarioController();
-$obj->Autenticar($user, $pass);
+
+if($obj->Autenticar($user, $pass) == "ok")
+    echo "<script>window.location.href = '../libros/listarlibro.php';</script>";
+
+else
+{
+    echo "<script>alert('Usuario no encontrado');</script>";
+    echo "<script>window.location.href = '../';</script>";
+}

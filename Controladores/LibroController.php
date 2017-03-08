@@ -2,28 +2,30 @@
 
 class LibroController extends Libro
 {
-	public function Insertar()
+	public function Insertar() 
 	{
 		$sql = "INSERT INTO `libro` 
-				VALUES (null, '$this->Titulo', '$this->Autor', '$this->Url', '$this->Portada', '$this->FkCuenta')";
+		VALUES (null, '$this->Titulo', 
+				'$this->Autor', '$this->Url', 
+				'$this->Portada', '$this->FkCuenta')";
 
 		$con = Conexion::Conectar();
 		$res = $con->query($sql);
 		Conexion::Desconectar($con);
-
 		return $res;
 	}
 
 	public function Modificar($id)
 	{
-		$sql = "UPDATE `usuario` 
-				SET `Titulo`='$this->Titulo', `Autor`='$this->Autor', `Url`='$this->Url', `Portada`='$this->Portada', `FkCuenta`='$this->FkCuenta'  
-				WHERE (`Id`='$id')";
+		$sql = "UPDATE libro 
+		SET Titulo = '$this->Titulo', 
+		Autor = '$this->Autor', Url = '$this->Url',
+		Portada = '$this->Portada', FkCuenta = '$this->FkCuenta' 
+		where Id = '$id'";
 
 		$con = Conexion::Conectar();
 		$res = $con->query($sql);
 		Conexion::Desconectar($con);
-
 		return $res;
 	}
 
@@ -34,29 +36,30 @@ class LibroController extends Libro
 		$con = Conexion::Conectar();
 		$res = $con->query($sql);
 		Conexion::Desconectar($con);
-
 		return $res;
 	}
 
 	public function Listar()
 	{
 		$sql = "SELECT * FROM libro";
-
+		
 		$con = Conexion::Conectar();
 		$res = $con->query($sql);
 		Conexion::Desconectar($con);
-
 		return $res;
 	}
 
-	public function BuscarPor($id)
+	public function BuscarPorPK($id)
 	{
 		$sql = "SELECT * FROM libro WHERE Id = '$id'";
 
 		$con = Conexion::Conectar();
 		$res = $con->query($sql);
 		Conexion::Desconectar($con);
-
 		return $res;
 	}
 }
+
+
+//$obj = new UsuarioController();
+//$obj->Autenticar('admin','12345');

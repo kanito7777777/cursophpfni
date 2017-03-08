@@ -5,7 +5,7 @@ class Conexion
 {
 	public static function Conectar()
 	{
-		$server = "127.0.0.1";
+		$server = "localhost";
 		$user = "root";
 		$pass = "root";
 		$database = "bibliotecabd";
