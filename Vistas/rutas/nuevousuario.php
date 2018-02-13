@@ -2,13 +2,14 @@
 	include('rutas.php');
 
 	$obj = new UsuarioController();	
+	$reg = new Usuario();
 
-	$obj->Cuenta = $_POST['txtCuenta'];
-	$obj->Password = $_POST['txtPassword'];
-	$obj->Nombre = $_POST['txtNombre'];
-	$obj->Celular = $_POST['txtCelular'];
+	$reg->Cuenta = $_POST['txtCuenta'];
+	$reg->Password = $_POST['txtPassword'];
+	$reg->Nombre = $_POST['txtNombre'];
+	$reg->Celular = $_POST['txtCelular'];
 
-	if ($obj->Insertar()) {
+	if ($obj->Insertar($reg)) {
 		echo "<script>window.location.href='../'</script>";
 	}
 	else{

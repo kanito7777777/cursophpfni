@@ -2,24 +2,24 @@
 
 class ReporteController
 {
-	public function Listar()
+	private function MyQuery($sql)
 	{
-		$sql = "SELECT * FROM vwlibrousuario";
-		
 		$con = Conexion::Conectar();
 		$res = $con->query($sql);
 		Conexion::Desconectar($con);
 		return $res;
 	}
 
+	public function Listar()
+	{
+		$sql = "SELECT * FROM vwlibrousuario";
+		return $this->MyQuery($sql);
+	}
+
 	public function Estadistico()
 	{
 		$sql = "call sprestadistico()";
-
-		$con = Conexion::Conectar();
-		$res = $con->query($sql);
-		Conexion::Desconectar($con);
-		return $res;
+		return $this->MyQuery($sql);
 	}
 }
 

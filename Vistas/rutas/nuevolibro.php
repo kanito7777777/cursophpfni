@@ -3,6 +3,7 @@
 	include('../rutas/rutas.php');
 
 	$obj = new LibroController();
+	$reg = new Libro();
 
 	//subiendo archivos al servidor
 	$nombrePortada = basename($_FILES['txtPortada']['name']);
@@ -14,13 +15,13 @@
 		echo "<script>window.location.href = '../libros/aportar.php'</script>";
 	}		
 
-	$obj->Titulo = $_POST['txtTitulo'];
-	$obj->Autor = $_POST['txtAutor'];
-	$obj->Url = $_POST['txtUrl'];
-	$obj->Portada = '../images/'.$nombrePortada;
-	$obj->FkCuenta = $_SESSION['user']->Cuenta; //pendiente
+	$reg->Titulo = $_POST['txtTitulo'];
+	$reg->Autor = $_POST['txtAutor'];
+	$reg->Url = $_POST['txtUrl'];
+	$reg->Portada = '../images/'.$nombrePortada;
+	$reg->FkCuenta = $_SESSION['user']->Cuenta;
 
-	if ($obj->Insertar()) {
+	if ($obj->Insertar($reg)) {
 		echo "<script>window.location.href='../libros/listarlibro.php'</script>";
 	}
 	else{

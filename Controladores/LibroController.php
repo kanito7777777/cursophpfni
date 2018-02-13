@@ -1,6 +1,6 @@
 <?php
 
-class LibroController extends Libro
+class LibroController
 {
 	private function MyQuery($sql)
 	{
@@ -10,22 +10,22 @@ class LibroController extends Libro
 		return $res;
 	}
 
-	public function Insertar() 
+	public function Insertar($reg) 
 	{
 		$sql = "INSERT INTO `libro` 
-		VALUES (null, '$this->Titulo', 
-				'$this->Autor', '$this->Url', 
-				'$this->Portada', '$this->FkCuenta')";
+		VALUES (null, '$reg->Titulo', 
+				'$reg->Autor', '$reg->Url', 
+				'$reg->Portada', '$reg->FkCuenta')";
 
 		return $this->MyQuery($sql);
 	}
 
-	public function Modificar($id)
+	public function Modificar($reg, $id)
 	{
 		$sql = "UPDATE libro 
-		SET Titulo = '$this->Titulo', 
-		Autor = '$this->Autor', Url = '$this->Url',
-		Portada = '$this->Portada', FkCuenta = '$this->FkCuenta' 
+		SET Titulo = '$reg->Titulo', 
+		Autor = '$reg->Autor', Url = '$reg->Url',
+		Portada = '$reg->Portada', FkCuenta = '$reg->FkCuenta' 
 		where Id = '$id'";
 
 		return $this->MyQuery($sql);

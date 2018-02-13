@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-class UsuarioController extends Usuario
+class UsuarioController
 {
 	private function MyQuery($sql)
 	{
@@ -11,17 +11,17 @@ class UsuarioController extends Usuario
 		return $res;
 	}
 
-	public function Insertar() 
+	public function Insertar($reg) 
 	{
-		$sql = "INSERT INTO `usuario` VALUES ('$this->Cuenta', sha1('$this->Password'), '$this->Nombre', '$this->Celular')";
+		$sql = "INSERT INTO `usuario` VALUES ('$reg->Cuenta', sha1('$reg->Password'), '$reg->Nombre', '$reg->Celular')";
 
 		return $this->MyQuery($sql);
 	}
 
-	public function Modificar($id)
+	public function Modificar($reg, $id)
 	{
-		$sql = "UPDATE usuario SET `Password` = sha1('$this->Password'), 
-		Nombre = '$this->Nombre', Celular = '$this->Celular' where Cuenta = '$id'";
+		$sql = "UPDATE usuario SET `Password` = sha1('$reg->Password'), 
+		Nombre = '$reg->Nombre', Celular = '$reg->Celular' where Cuenta = '$id'";
 
 		return $this->MyQuery($sql);
 	}
@@ -35,7 +35,7 @@ class UsuarioController extends Usuario
 
 	public function Listar()
 	{
-		$sql = "SELECT * FROM usuario where cuenta <> 'admin'";
+		$sql = "SELECT * FROM usuario";
 		
 		return $this->MyQuery($sql);
 	}
@@ -62,14 +62,13 @@ class UsuarioController extends Usuario
 
 	public function Autenticar($user, $pass)
 	{
+
 		$user = $this->Filtrar($user);
 		$pas = $this->Filtrar($pass);	
 
 		$sql = "select * from usuario where Cuenta = '$user' and Password = sha1('$pass')";
 
-		$con = Conexion::Conectar();
-		$res = $con->query($sql);
-		Conexion::Desconectar($con);
+		$res = $this->MyQuery($sql);
 
 		if(mysqli_num_rows($res))
 		{
