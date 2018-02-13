@@ -21,7 +21,7 @@
                     <ul class="nav nav-pills pull-right">
                         <li role="presentation"><a href="../libros/listarlibro.php">Libros</a></li>
                         <li role="presentation"><a href="../libros/aportar.php">Aportar</a></li>
-                        <li role="presentation" class="active"><a href="perfil.php">Mi Perfil</a></li>
+                        <li role="presentation" class="active"><a href="perfil.php">Mi Perfil (<?php  echo $_SESSION['user']->Cuenta ?>)</a></li>
                         
                         <?php if($_SESSION['user']->Cuenta == 'admin'): ?>
                         <li role="presentation"><a href="../usuarios/listarusuario.php">Usuarios</a></li>

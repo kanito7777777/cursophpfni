@@ -35,7 +35,7 @@ class UsuarioController extends Usuario
 
 	public function Listar()
 	{
-		$sql = "SELECT * FROM usuario";
+		$sql = "SELECT * FROM usuario where cuenta <> 'admin'";
 		
 		return $this->MyQuery($sql);
 	}
@@ -62,7 +62,6 @@ class UsuarioController extends Usuario
 
 	public function Autenticar($user, $pass)
 	{
-
 		$user = $this->Filtrar($user);
 		$pas = $this->Filtrar($pass);	
 

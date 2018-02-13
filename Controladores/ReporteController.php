@@ -4,7 +4,7 @@ class ReporteController
 {
 	public function Listar()
 	{
-		$sql = "select * from vwlibrousuario";
+		$sql = "SELECT * FROM vwlibrousuario";
 		
 		$con = Conexion::Conectar();
 		$res = $con->query($sql);

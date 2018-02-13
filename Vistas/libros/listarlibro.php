@@ -80,10 +80,12 @@
                 <h3 class="text-muted"><span class="glyphicon glyphicon-bookmark"></span> Libros </h3>
         </div>
 
+        <?php  if($_SESSION['user']->Cuenta == 'admin'): ?>
         <p>
             <a href="javascript:abrirVentana('../reportes/reportelistado.php')" >Lista de Aportes</a> ||            
             <a href="javascript:abrirVentana('../reportes/reporteestadistico.php')" >Reporte Estadistico</a>
         </p>
+        <?php endif; ?>
 
         <p>
             Buscar: <input onkeyup="javascript:buscar()" type="textBuscar" id="txtBuscar" name="txt" style="width:100%" value="">
