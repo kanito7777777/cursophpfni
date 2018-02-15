@@ -48,7 +48,7 @@
 		<div id="res"></div>
 		
       </form>
-		<p align="center"><a href="usuarios/nuevousuario.html">(Si no tiene cuenta puede registrase aqui)</a></p>
+		<p align="center"><a href="usuarios/create.html">(Si no tiene cuenta puede registrase aqui)</a></p>
     </div> <!-- /container -->
 
     <script src="js/bootstrap.js"></script>

@@ -3,9 +3,9 @@
 
 	$id = $_GET['id'];
 
-	$obj = new LibroController();
+	$obj = new UsuarioController();
 
 	$obj->Eliminar($id);
 
-	header('Location:../libros/listarlibro.php');
+	header('Location:./');
 ?>

@@ -1,5 +1,5 @@
 <?php  
-	include('rutas.php');
+	include('../rutas/rutas.php');
 
 	$obj = new UsuarioController();	
 	$reg = new Usuario();
@@ -14,6 +14,6 @@
 	}
 	else{
 		echo "<script>alert('Error al registrar usuario')</script>";
-		echo "<script>window.location.href = '../usuarios/nuevousuario.htmlx'</script>";
+		echo "<script>window.location.href = '../usuarios/create.html'</script>";
 	}
 ?>

@@ -8,7 +8,7 @@ $pass = $_POST['txtPassword']; //'12345';
 $obj = new UsuarioController();
 
 if($obj->Autenticar($user, $pass) == "ok")
-    echo "<script>window.location.href = '../libros/listarlibro.php';</script>";
+    echo "<script>window.location.href = '../libros/';</script>";
 
 else
 {

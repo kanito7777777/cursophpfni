@@ -26,12 +26,12 @@
 		<div class="header clearfix">
                 <nav>
                     <ul class="nav nav-pills pull-right">
-                        <li role="presentation" class="active"><a href="listarlibro.php">Libros</a></li>
-                        <li role="presentation"><a href="aportar.php">Aportar</a></li>
-                        <li role="presentation"><a href="../usuarios/perfil.php">Mi Perfil</a></li>
+                        <li role="presentation" class="active"><a href="./">Libros</a></li>
+                        <li role="presentation"><a href="create.php">Aportar</a></li>
+                        <li role="presentation"><a href="../usuarios/show.php">Mi Perfil</a></li>
                         
                         <?php if($_SESSION['user']->Cuenta == 'admin'): ?>
-                        <li role="presentation"><a href="../usuarios/listarusuario.php">Usuarios</a></li>
+                        <li role="presentation"><a href="../usuarios/">Usuarios</a></li>
                         <?php endif; ?>
                         
                         <li role="presentation"><a href="../">Salir</a></li>
@@ -65,7 +65,7 @@
                         <td><img class="img-thumbnail" width="200px" src="<?php echo htmlentities($f->Portada);?>" /></td>
                     </tr>
               <?php endwhile; ?>  
-              <p align="right"><a class="btn btn-success" href="listarlibro.php">volver</a></p>
+              <p align="right"><a class="btn btn-success" href="./">volver</a></p>
             </tbody>
         </table>
         

@@ -19,12 +19,12 @@
 		<div class="header clearfix">
                 <nav>
                     <ul class="nav nav-pills pull-right">
-                        <li role="presentation"><a href="../libros/listarlibro.php">Libros</a></li>
-                        <li role="presentation"><a href="../libros/aportar.php">Aportar</a></li>
-                        <li role="presentation" class="active"><a href="perfil.php">Mi Perfil (<?php  echo $_SESSION['user']->Cuenta ?>)</a></li>
+                        <li role="presentation"><a href="../libros/">Libros</a></li>
+                        <li role="presentation"><a href="../libros/create.php">Aportar</a></li>
+                        <li role="presentation" class="active"><a href="show.php">Mi Perfil (<?php  echo $_SESSION['user']->Cuenta ?>)</a></li>
                         
                         <?php if($_SESSION['user']->Cuenta == 'admin'): ?>
-                        <li role="presentation"><a href="../usuarios/listarusuario.php">Usuarios</a></li>
+                        <li role="presentation"><a href="../usuarios/">Usuarios</a></li>
                         <?php endif; ?>
                         
                         <li role="presentation"><a href="../">Salir</a></li>
@@ -52,7 +52,7 @@
                         <td>Celular</td>
                         <td><?php echo htmlentities(    $_SESSION['user']->Celular);  ?></td>
                     </tr>
-              <p align="right"><a class="btn btn-success" href="../libros/listarlibro.php">volver</a></p>
+              <p align="right"><a class="btn btn-success" href="../libros/">volver</a></p>
             </tbody>
         </table>
         

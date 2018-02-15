@@ -22,10 +22,10 @@
 	$reg->FkCuenta = $_SESSION['user']->Cuenta;
 
 	if ($obj->Insertar($reg)) {
-		echo "<script>window.location.href='../libros/listarlibro.php'</script>";
+		echo "<script>window.location.href='../libros/'</script>";
 	}
 	else{
 		echo "<script>alert('Error al registrar libro')</script>";
-		echo "<script>window.location.href = '../libros/aportar.php'</script>";
+		echo "<script>window.location.href = '../libros/create.php'</script>";
 	}
 ?>
