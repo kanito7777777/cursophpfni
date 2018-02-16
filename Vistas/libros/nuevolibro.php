@@ -12,9 +12,10 @@
 	if (!move_uploaded_file($dirPortada, '../images/'.$nombrePortada))
 	{
 		echo "<script>alert('Error al subir portada')</script>";
-		echo "<script>window.location.href = '../libros/aportar.php'</script>";
+		echo "<script>window.location.href = '../libros/create.php'</script>";
 	}		
 
+	//cargando datos
 	$reg->Titulo = $_POST['txtTitulo'];
 	$reg->Autor = $_POST['txtAutor'];
 	$reg->Url = $_POST['txtUrl'];

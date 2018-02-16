@@ -3,12 +3,9 @@
     if(!isset($_SESSION['user']))
         header('Location:../');
 
-    $id = 0;
-    $esNuevo = true;
     if(isset($_GET['id']))
     {
         $id = $_GET['id'];
-        $esNuevo = false;
 
         include("../rutas/rutas.php");
         $obj = new LibroController();
@@ -28,15 +25,21 @@
 <body>
 	<div class="container">
 	 
-      <form class="form-signin" action="nuevolibro.php" method="POST" enctype="multipart/form-data">
+    <?php if(!isset($f)): ?> 
+        <form class="form-signin" action="nuevolibro.php" method="POST" enctype="multipart/form-data">
+    <?php else: ?>
+        <form class="form-signin" action="update.php" method="POST" enctype="multipart/form-data">
+        <input type="hidden" id="id" name="id" value="<?php echo $f->Id ?>">
+    <?php endif; ?>
+
         <h2 class="form-signin-heading" align="center">Aportar Libro</h2>
         <hr/>
-
-			<label for="txtTitulo">Titulo:<br></label><input type="text" class="form-control" name="txtTitulo" value="<?php echo $f->Titulo ?>" required /><br/>
-            <label for="txtAutor">Autor:<br></label><input type="text" class="form-control" name="txtAutor" value="" required /><br/>
-            <label for="txtUrl">Url:<br></label><input type="url" class="form-control" name="txtUrl" value="http://" required /><br/>
-            <label for="txtPortada">Portada:<br></label><input type="file" name="txtPortada" value="" required /><br/>
+			<label for="txtTitulo">Titulo:<br></label><input type="text" class="form-control" name="txtTitulo" value="<?php if(isset($f)) echo $f->Titulo; ?>" required /><br/>
+            <label for="txtAutor">Autor:<br></label><input type="text" class="form-control" name="txtAutor" value="<?php if(isset($f)) echo $f->Autor; ?>" required /><br/>
+            <label for="txtUrl">Url:<br></label><input type="url" class="form-control" name="txtUrl" value="<?php if(isset($f)) echo $f->Url; ?>" required /><br/>
             
+            <label for="txtPortada">Portada:<br></label><input type="file" name="txtPortada" value="" <?php if(!isset($f)): ?> required <?php endif; ?>  /><br/>
+                
             <button type="submit" name="btnAceptar" class="btn btn-lg btn-success" >Aceptar</button>
             <a href="./">(Cancelar)</a>
 
